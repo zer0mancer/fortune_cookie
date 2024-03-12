@@ -1,10 +1,14 @@
 class Fortune
-  attr_accessor :fortune, :lucky_numbers, :langauge
+  attr_accessor :omen, :fortune,
+   #:lucky_numbers, :langauge
 
   def initialize
+    @omen = omen
     @fortune = fortune
-    @lucky_numbers = lucky_numbers
-    @langauge = langauge
+
+    #Create these later
+    #@lucky_numbers = lucky_numbers
+    #@langauge = langauge
   end
 
   def start
@@ -14,4 +18,33 @@ class Fortune
       loop do 
         puts "\n"
         pp "Select what fortune will be in your cookie:"
-        pp "1: "
+        pp "1: "Write a fortune for cookie"
+        pp "2: "View Fortunes needed to be wrapped inside a cookie"
+        pp "3: "Clock out for the day"
+        selection = gets.chomp.to_i
+        pp "\n"
+        pp "\n"
+          case
+          when 1
+            write_a_fortune
+          when 2
+            fortune_selection
+          when 3
+            pp "Until next time. We eagerly await our next meeting of adventure, Fortune Maker"
+          break
+          else
+            puts "That selection is not available, but maybe in the next updated patch."
+          end
+        end
+      end
+
+private
+
+def write_fortune
+  pp "Are the stars aligning us with creating a good or a bad fortune?"
+  omen = gets.chomp
+  pp "What is the Fortune you are bestowing upon us, Maker?"
+  fortune = gets.chomp
+  @fortunes < Fortune.new(omen, fortune)
+  pp "Your Fortune has been accepted and stored for safekeeping until we deliver it to the chosen one"
+end
