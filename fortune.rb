@@ -1,10 +1,21 @@
 class Fortune
-  attr_accessor :omen, :fortune,
+  attr_accessor :omen, :fortune
+
+  def initialize(omen, fortune)
+    @omen = omen
+    @fortune = fortune
+  end
+
+  def cookie
+    "This cookie will bring you #{omen} luck. #{fortune}"
+end
+
+
+class Fortune_Cookies
    #:lucky_numbers, :langauge
 
   def initialize
-    @omen = omen
-    @fortune = fortune
+    @fortunes = []
 
     #Create these later
     #@lucky_numbers = lucky_numbers
@@ -17,18 +28,18 @@ class Fortune
     puts "Let's make a fortune:"
       loop do 
         puts "\n"
-        pp "Select what fortune will be in your cookie:"
+        pp "What would you like to do, Fortune Maker?:"
         pp "1: "Write a fortune for cookie"
-        pp "2: "View Fortunes needed to be wrapped inside a cookie"
-        pp "3: "Clock out for the day"
+        pp "2: "View All Fortune Cookies ready to be "
+        pp "3: "Take a break from writing Fortunes and go eat cookies."
         selection = gets.chomp.to_i
         pp "\n"
         pp "\n"
-          case
+          case selection
           when 1
             write_a_fortune
           when 2
-            fortune_selection
+            cookie_collection
           when 3
             pp "Until next time. We eagerly await our next meeting of adventure, Fortune Maker"
           break
@@ -48,3 +59,17 @@ def write_fortune
   @fortunes < Fortune.new(omen, fortune)
   pp "Your Fortune has been accepted and stored for safekeeping until we deliver it to the chosen one"
 end
+
+def cookie_collection
+  if
+    @fortunes.empty?
+    puts "We are sold out of Fortunee Cookies. You need to make more."
+  else
+  @fortunes.each do |fortune|
+    puts fortune.cookie
+  puts "^^^This is your collection of Cookies with Fortunes^^^"
+  end
+end
+end
+end
+
