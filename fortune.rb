@@ -29,9 +29,10 @@ class Fortune_Cookies
       loop do 
         puts "\n"
         pp "What would you like to do, Fortune Maker?:"
-        pp "1: "Write a fortune for cookie"
-        pp "2: "View All Fortune Cookies ready to be "
-        pp "3: "Take a break from writing Fortunes and go eat cookies."
+        pp "1: Write a fortune for cookie"
+        pp "2: View All Fortune Cookies ready to be "
+        pp "3: Take a break from writing Fortunes and go eat cookies."
+        pp "4: Send out a Fortune Cookie."
         selection = gets.chomp.to_i
         pp "\n"
         pp "\n"
@@ -42,6 +43,8 @@ class Fortune_Cookies
             cookie_collection
           when 3
             pp "Until next time. We eagerly await our next meeting of adventure, Fortune Maker"
+          when 4
+            deliver = @fortunes.rand
           break
           else
             puts "That selection is not available, but maybe in the next updated patch."
@@ -72,4 +75,3 @@ def cookie_collection
 end
 end
 end
-
