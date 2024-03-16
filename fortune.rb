@@ -8,25 +8,26 @@ class Fortune
 
   def cookie
     "This cookie will bring you #{omen} luck. #{fortune}"
-end
-
-
-class Fortune_Cookies
-   #:lucky_numbers, :langauge
-
-  def initialize
-    @fortunes = []
-
-    #Create these later
-    #@lucky_numbers = lucky_numbers
-    #@langauge = langauge
   end
 
-  def start
-    puts "Welcome to the year 2052. The world is now sad and dark all the time. People barely see the sun. They are generally unhappy here. They work hard day in and day out hoping for some luck to come their way. This is where you come along."
-    puts "You are a Fortune creator. The most important role in society. You can crush someone's hopes and dreams or you can bring them joy and happiness to hold them over until the Sun decides to shine on them again."
-    puts "Let's make a fortune:"
-      loop do 
+end
+
+  class Fortune_Cookies
+    #:lucky_numbers, :langauge
+
+    def initialize
+      @fortunes = []
+
+      #Create these later
+      #@lucky_numbers = lucky_numbers
+      #@langauge = langauge
+    end
+
+    def start
+      puts "Welcome to the year 2052. The world is now sad and dark all the time. People barely see the sun. They are generally unhappy here. They work hard day in and day out hoping for some luck to come their way. This is where you come along."
+      puts "You are a Fortune creator. The most important role in society. You can crush someone's hopes and dreams or you can bring them joy and happiness to hold them over until the Sun decides to shine on them again."
+      puts "Let's make a fortune:"
+      loop do
         puts "\n"
         pp "What would you like to do, Fortune Maker?:"
         pp "1: Write a fortune for cookie"
@@ -36,42 +37,54 @@ class Fortune_Cookies
         selection = gets.chomp.to_i
         pp "\n"
         pp "\n"
-          case selection
-          when 1
-            write_a_fortune
-          when 2
-            cookie_collection
-          when 3
-            pp "Until next time. We eagerly await our next meeting of adventure, Fortune Maker"
-          when 4
-            deliver = @fortunes.rand
+        case selection
+        when 1
+          write_fortune
+        when 2
+          cookie_collection
+        when 3
+          pp "Until next time. We eagerly await our next meeting of adventure, Fortune Maker"
+        when 4
+          deliver
           break
-          else
-            puts "That selection is not available, but maybe in the next updated patch."
-          end
+        else
+          puts "That selection is not available, but maybe in the next updated patch."
         end
       end
+    end
 
-private
+    private
 
-def write_fortune
-  pp "Are the stars aligning us with creating a good or a bad fortune?"
-  omen = gets.chomp
-  pp "What is the Fortune you are bestowing upon us, Maker?"
-  fortune = gets.chomp
-  @fortunes < Fortune.new(omen, fortune)
-  pp "Your Fortune has been accepted and stored for safekeeping until we deliver it to the chosen one"
-end
+    def write_fortune
+      pp "Are the stars aligning us with creating a good or a bad fortune?"
+      omen = gets.chomp
+      pp "What is the Fortune you are bestowing upon us, Maker?"
+      fortune = gets.chomp
+      @fortunes << Fortune.new(omen, fortune)
+      pp "Your Fortune has been accepted and stored for safekeeping until we deliver it to the chosen one"
+    end
 
-def cookie_collection
-  if
-    @fortunes.empty?
-    puts "We are sold out of Fortunee Cookies. You need to make more."
-  else
-  @fortunes.each do |fortune|
-    puts fortune.cookie
-  puts "^^^This is your collection of Cookies with Fortunes^^^"
+    def cookie_collection
+      if @fortunes.empty?
+        puts "We are sold out of Fortunee Cookies. You need to make more."
+      else
+        @fortunes.each do |fortune|
+          puts fortune.cookie
+          puts "^^^This is your collection of Cookies with Fortunes^^^"
+        end
+      end
+    end
+    def deliver
+      if @fortunes.empty?
+        puts "There are no Fortunes To Give Away. You should create some first."
+      else
+      puts "Sending out a #{@fortunes.sample.omen} Fortune to somehow who deserves it:
+      #{@fortunes.sample.fortune}"
+      end
+    end
+
+
+
+
+
   end
-end
-end
-end
